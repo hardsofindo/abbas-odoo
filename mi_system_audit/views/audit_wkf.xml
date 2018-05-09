@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+ 
+         <record id="wkf_kite_audit" model="workflow">
+            <field name="name">kite.audit.basic</field>
+            <field name="osv">kite.form.audit</field>
+            <field name="on_create">True</field>
+        </record>
+        
+        <record id="act_kite_audit_draft" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_kite_audit"/>
+            <field name="flow_start">True</field>
+            <field name="name">Proses</field>
+            <field name="kind">function</field>
+            <field name="action">action_new()</field>
+        </record>
+ 
+        <record id="act_kite_audit_done" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_kite_audit"/>
+            <field name="flow_stop">True</field>
+            <field name="kind">function</field>
+            <field name="action">action_done()</field>            
+            <field name="name">done</field>
+        </record>
+
+        <record id="act_kite_audit_cancel" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_kite_audit"/>
+            <field name="flow_start">True</field>
+            <field name="name">cancel</field>
+            <field name="kind">function</field>
+            <field name="action">action_cancel()</field>
+        </record>
+
+        <!-- Kite from Audit in the letter manual Transfer to user flow chart base on odoo9 -->
+        
+        <record id="kite_audit_trans_draft" model="workflow.transition">
+            <field name="act_from" ref="act_kite_audit_draft"/>
+            <field name="act_to" ref="act_kite_audit_done"/>
+            <field name="signal">button_draft</field>
+            <field name="condition">kite_audit_draft()</field>            
+		</record>
+
+        <record id="kite_audit_trans_done" model="workflow.transition">
+            <field name="act_from" ref="act_kite_audit_done"/>
+            <field name="act_to" ref="act_kite_audit_cancel"/>
+            <field name="signal">button_done</field>
+            <field name="condition">kite_audit_done()</field>
+        </record>
+
+        <record id="kite_audit_trans_cancel" model="workflow.transition">
+            <field name="act_from" ref="act_kite_audit_draft"/>
+            <field name="act_to" ref="act_kite_audit_cancel"/>
+            <field name="signal">button_cancel</field>
+            <field name="condition">kite_audit_cancel()</field>
+        </record>
+    
+	</data>
+</openerp>

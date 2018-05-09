@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp> 
+	<data>
+
+	<record id="data_audit_detail_tree" model="ir.ui.view">
+        <field name="name">data_audit_detail.tree</field>
+        <field name="model">data.audit.detail</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+             <tree string="Data Barang Detail">
+				<field name="norut_line2" />
+				<field name="source_document" />
+				<field name="no_peb" />
+				<field name="kd_ktr_peb" />
+				<field name="kd_brg_peb" />
+				<field name="nm_brg_peb" />
+				<field name="color_brg_peb" /> 
+				<field name="qty_feb" sum="Total"/>
+			</tree>
+        </field>
+    </record>
+    
+	<record id="data_audit_detail_form" model="ir.ui.view">
+        <field name="name">data.audit.detail.form</field>
+        <field name="model">data.audit.detail</field>
+        <field name="type">form</field>
+		<field name="priority" eval="14" />
+        <field name="arch" type="xml">
+        	<form>
+        		<sheet>
+        			<group>
+        				<group string = " Document ">
+							<field name="norut_line2" />
+							<field name="customer_peb" />
+							<field name="kd_ktr_peb" />
+							<field name="no_peb" />
+							<field name="tgl_peb" />
+							<field name="seri_brg_peb" />
+							<field name="hs_code_peb" />
+							<field name="kd_brg_peb" />
+							<field name="nm_brg_peb" />
+							<field name="color_brg_peb" />
+							<field name="qty_feb" />
+							<field name="no_invoice" />
+							<field name="tgl_invoice" />
+							<field name="no_lpse" />
+							<field name="tgl_lpse" />
+        				</group>
+        				<group string = "Volume ">
+							<field name="source_document" />
+							<field name="no_sj_pengajuaan" />
+							<field name="tgl_sj_pengajuaan" />
+							<field name="kd_konversi_bc" />
+							<field name="kandungan_persen" />
+							<field name="kandungan_qty" />
+							<field name="waste_persen_peb" />
+							<field name="waste_qty_peb" />
+							<field name="waste_kg" />
+							<field name="material_use" />
+							<field name="sisa_kite" />
+        				</group>
+<!--         				<group string = "Document / Volume PIB">
+							<field name="seri_brg_pib" />
+							<field name="qty_po" help = 'quantity P.O'/>
+							<field name="satuan_po" help = 'satuan P.O'/>
+							<field name="konversi_qty_pib" />
+							<field name="konversi_satuan_pib" />
+							<field name="gw_pib" />
+							<field name="nw_pib" />
+							<field name="unit_price_pib" />
+							<field name="value_pib" />
+							<field name="currency_pib" />
+							<field name="car_pib" />
+        				</group>
+        				<group string = "Purchases Order/Payment Order ">
+							<field name="no_purchase_order" />
+							<field name="nm_supplier_po" />
+							<field name="tgl_payment" />
+							<field name="no_payment" />
+							<field name="nm_bank_payment" />
+							<field name="value_payment" />
+							<field name="balance_payment" />
+        				</group> -->
+        				<group string = "Spec Bom Consumption">
+							<field name="no_bon_permitaan" />
+							<field name="tgl_bon_permintaan" />
+							<field name="no_spec_bom" />
+							<field name="yield_consum" />
+							<field name="group_size_consum" />
+							<field name="qty_spec_bom_consum" />
+        				</group>
+        			</group>
+        		</sheet>
+        	</form>      	
+        </field>
+    </record>
+		<record id="action_data_audit_detail" model="ir.actions.act_window">
+            <field name="name">Data Barang Detail</field>
+            <field name="res_model">data.audit.detail</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="view_id" ref="data_audit_detail_tree"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                  Silahkan Untuk Membuat Baru Data Barang Secara Komplit
+              </p>
+            </field>
+    	</record> 
+
+    	<record id="view_data_audit_detail_form" model="ir.actions.act_window.view">
+            <field eval="4" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="data_audit_detail_form"/>
+            <field name="act_window_id" ref="action_data_audit_detail"/>
+        </record>
+        <record id="view_data_audit_detail_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="data_audit_detail_tree"/>
+            <field name="act_window_id" ref="action_data_audit_detail"/>
+        </record>
+
+    <menuitem name="Master Barang Detail" action="action_data_audit_detail" id="menu_data_audit_detail" parent="menu_document_audit" sequence="3"/>
+
+	</data>
+</openerp>

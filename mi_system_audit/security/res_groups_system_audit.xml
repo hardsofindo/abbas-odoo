@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data noupdate="0">
+    <record model="ir.module.category" id="module_management_system_audit_aggio">
+        <field name="name">Management System Audit Aggio</field>
+        <field name="description">Manage management systems, manuals,Audits, reviews.</field>
+        <field name="sequence">105</field>
+    </record>
+ 		<record id="groups_data_audit" model="res.groups">
+			<field name="name">Menu Document Audit</field>
+        	<field name="category_id" ref="module_management_system_audit_aggio"/>
+		</record>
+		<record id="groups_data_audit_line" model="res.groups">
+			<field name="name">Menu Master Barang</field>
+        	<field name="category_id" ref="module_management_system_audit_aggio"/>
+<!--         	<field name="implied_ids" eval="[(4,ref('mi_system_audit.res_groups_data_audit'))]"/> -->
+		</record>
+		<record id="groups_data_audit_detail" model="res.groups">
+			<field name="name">Menu Master Barang Detail</field>
+        	<field name="category_id" ref="module_management_system_audit_aggio"/>
+		</record>
+		<record id="groups_data_audit_detail" model="res.groups">
+			<field name="name">Menu Master Barang Detail</field>
+        	<field name="category_id" ref="module_management_system_audit_aggio"/>
+		</record>
+		<record id="groups_rpt_audit" model="res.groups">
+			<field name="name">Rekapitulasi Audit</field>
+        	<field name="category_id" ref="module_management_system_audit_aggio"/>
+		</record> -->
+	</data>
+</openerp>

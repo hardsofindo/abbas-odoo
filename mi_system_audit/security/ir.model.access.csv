@@ -1,0 +1,5 @@
+id,name,group_id:id,model_id:id,perm_create,perm_unlink,perm_write,perm_read
+access_data_audit,data.audit,groups_data_audit,model_data_audit,1,1,1,1
+access_data_audit_line,Data.audit.line,groups_data_audit_line,model_data_audit_line,1,1,1,1
+access_data_audit_detail,data.audit.detail,groups_data_audit_detail,model_data_audit_detail,1,1,1,1
+access_rpt_audit,Rpt.audit,groups_rpt_audit,model_rpt_audit,0,0,0,1

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp> 
+	<data>
+		
+	<record id="informasi_data_audit_tree" model="ir.ui.view">
+        <field name="name">informasi.data.audit.tree</field>
+        <field name="model">data.audit.line</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+             <tree string="Informasi Data Barang">
+				<field name="norut_line" /> 
+				<field name="seri_brg_pib" /> 
+				<field name="hs_code_pib" />
+				<field name="kd_brg_konversi" />
+				<field name="nm_brg_konversi" />
+				<field name="size_konversi" />
+				<field name="color_konversi" /> 
+				<field name="konversi_qty_pib" /> 
+				<field name="sisa_kite" /> 
+<!-- 				<field name="kandungan_persen" />
+				<field name="ttl_qty_kandungan" sum="Total"/> -->
+			</tree>
+        </field>
+    </record>
+    
+	<record id="informasi_data_audit_form" model="ir.ui.view">
+        <field name="name">informasi.data.audit.form</field>
+        <field name="model">data.audit.line</field>
+        <field name="type">form</field>
+		<field name="priority" eval="15" />
+        <field name="arch" type="xml">
+        	<form>
+        		<sheet>
+        			<group>
+        				<group>
+							<field name="norut_line" /> 
+							<field name="hs_code_pib" />
+							<field name="kd_brg_konversi" />
+							<field name="nm_brg_konversi" />
+        				</group>
+        				<group>
+							<field name="seri_brg_pib" /> 
+							<field name="size_konversi" />
+							<field name="color_konversi" /> 
+							<field name="sisa_kite" /> 
+<!-- 							<field name="konversi_qty_pib" /> 
+							<field name="kandungan_persen" />
+							<field name="ttl_qty_kandungan"/> -->
+        				</group>
+        			</group>
+					<notebook>
+						<page string = "Informasi Data Barang Detail">
+							<field name = "audit_line_detail">
+								<tree string = "Informasi Data Barang Detail">
+									<field name = "norut_line2"/>
+									<field name = "no_peb"/>
+									<field name = "kd_ktr_peb"/>
+									<field name = "kd_brg_peb"/>
+									<field name = "nm_brg_peb"/>
+									<field name = "color_brg_peb"/>
+									<field name = "qty_feb"/>
+								</tree>							
+							</field>
+						</page>
+						<page string = "Other Informasi ">
+						<group>
+						<group>
+							<field name="qty_po" help = 'quantity P.O'/>
+							<field name="satuan_po" help = 'satuan P.O'/>
+							<field name="konversi_qty_pib" />
+							<field name="konversi_satuan_pib" />
+							<field name="gw_pib" />
+							<field name="nw_pib" />
+							<field name="unit_price_pib" />
+							<field name="value_pib" />
+							<field name="currency_pib" />
+							<field name="car_pib" />
+        				</group>
+        				<group>
+							<field name="no_purchase_order" />
+							<field name="nm_supplier_po" />
+							<field name="tgl_payment" />
+							<field name="no_payment" />
+							<field name="nm_bank_payment" />
+							<field name="value_payment" />
+							<field name="balance_payment" />
+        				</group>
+        				</group>
+        				</page>					
+        			</notebook>
+        		</sheet>
+        	</form>      	
+        </field>
+    </record>
+		<record id="action_informasi_data_audit" model="ir.actions.act_window">
+            <field name="name">Informasi Data Barang</field>
+            <field name="res_model">data.audit.line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="view_id" ref="informasi_data_audit_tree"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                  Silahkan Untuk Membuat Baru Data Informasi Barang
+              </p>
+            </field>
+    	</record> 
+
+    	<record id="view_informasi_data_audit_form" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="informasi_data_audit_form"/>
+            <field name="act_window_id" ref="action_informasi_data_audit"/>
+        </record>
+        <record id="view_informasi_data_audit_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="informasi_data_audit_tree"/>
+            <field name="act_window_id" ref="action_informasi_data_audit"/>
+        </record>
+
+    <menuitem name="Master Barang" action="action_informasi_data_audit" id="menu_informasi_data_audit" parent="menu_document_audit" sequence="3"/>
+
+	</data>
+</openerp>

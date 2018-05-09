@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp> 
+	<data>	
+
+    <menuitem id="menu_report_audit" name="REPORTING" parent="menu_audit_root" sequence="2" />
+
+        <record id="rpt_audit_tree" model="ir.ui.view">
+            <field name="name">rpt.audit.tree</field>
+            	<field name="model">rpt.audit</field>
+            	<field name="arch" type="xml">
+					<tree colors="blue:state == 'draft';red:state  == 'done';green:state == 'cancel';black:state" string="Rekapitulasi Document Audit" create="false">
+                     	<field name="norut_line" />
+                     	<field name="norut_line2" />
+                     	<field name="nm_custome" />
+	                    <field name="season_id" />
+                     	<field name="kd_ktr_peb" /> 
+                     	<field name="no_peb" />
+                     	<field name="tgl_peb" />
+                     	<field name="customer_peb" />
+                     	<field name="seri_brg_peb" />
+                     	<field name="hs_code_peb" />
+                     	<field name="kd_brg_peb" />
+                     	<field name="nm_brg_peb" />
+                     	<field name="color_brg_peb" />
+                     	<field name="qty_feb" />
+                     	<field name="no_invoice" />
+                     	<field name="tgl_invoice" />
+                     	<field name="no_lpse" />
+                     	<field name="tgl_lpse" />
+                     	<field name="no_bon_permitaan" />
+                     	<field name="tgl_bon_permintaan" />
+                     	<field name="no_spec_bom" />
+                     	<field name="yield_consum" />
+                     	<field name="group_size_consum" />
+                     	<field name="qty_spec_bom_consum" />
+                     	<field name="no_sj_pengajuaan" />
+                     	<field name="tgl_sj_pengajuaan" />
+                     	<field name="kd_konversi_bc" />
+                     	<field name="kd_brg_konversi" />
+                     	<field name="nm_brg_konversi" />
+                     	<field name="size_konversi" />
+                     	<field name="color_konversi" />
+                     	<field name="kandungan_persen" />
+                     	<field name="kandungan_qty" />
+                     	<field name="waste_persen_peb" />
+                     	<field name="waste_qty_peb" />
+                     	<field name="waste_kg" />
+                     	<field name="material_use" />
+                     	<field name="sisa_kite" />
+                     	<field name="car_pib" />
+                     	<field name="tgl_jatuh_tempo" />
+                     	<field name="no_bl" />
+                     	<field name="tgl_bl" />
+                     	<field name="kd_kantor_pib" />
+                     	<field name="no_pib_aju" />
+                     	<field name="tgl_pib" />
+                     	<field name="seri_brg_pib" />
+                     	<field name="hs_code_pib" />
+                     	<field name="qty_po" />
+                     	<field name="satuan_po" />
+                     	<field name="konversi_qty_pib" />
+                     	<field name="konversi_satuan_pib" />
+                     	<field name="gw_pib" />
+                     	<field name="nw_pib" />
+                     	<field name="unit_price_pib" />
+                     	<field name="value_pib" />
+                     	<field name="currency_pib" />
+                     	<field name="no_sttj" />
+                     	<field name="tgl_sttj" />
+                     	<field name="no_pen" />
+                     	<field name="tgl_pen" />
+                     	<field name="no_sppb" />
+                     	<field name="tgl_sppb" />
+                     	<field name="no_sptnp" />
+                     	<field name="tgl_sptnp" />
+                     	<field name="nm_masuk_gdg" />
+                     	<field name="tgl_masuk_gdg" />
+                     	<field name="no_payment" />
+                     	<field name="nm_bank_payment" />
+                     	<field name="tgl_payment" />
+                     	<field name="value_payment" />
+                     	<field name="balance_payment" />
+                     	<field name="no_purchase_order" />
+                     	<field name="nm_supplier_po" /> 
+                     	<field name="state" /> 
+                     	<field name="note" /> 
+                    </tree>
+            </field>
+        </record>
+        <record id="rpt_audit_filter" model="ir.ui.view">
+            <field name="name">rpt.audit.filter</field>
+            <field name="model">rpt.audit</field>
+            <field name="arch" type="xml">
+                <search string="Search">
+      				<field name="nm_custome" string="Nama Custome" filter_domain="[('nm_custome','ilike',self)]"/>
+                   	<field name="season_id" string="Season" filter_domain="[('season_id','ilike',self)]"/>
+                   	<field name="no_bon_permitaan" string="No. Bon Permintaan" filter_domain="[('no_bon_permitaan','ilike',self)]"/>
+                    <group expand="1" string="Group By...">
+                         <filter string="Nama Custume" name="season_id" icon="terp-accessories-archiver" context="{'group_by':'nm_custome'}" />
+                         <filter string="Season" name="season_id" icon="terp-accessories-archiver" context="{'group_by':'season_id'}" />
+                     </group>
+                </search>
+            </field>
+        </record> 
+        <record id="action_rpt_audit" model="ir.actions.act_window">
+            <field name="name">Rekapitulasi Data Audit</field>
+            <field name="res_model">rpt.audit</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="search_view_id" ref="rpt_audit_filter"/> 
+        	<field name="context">{'search_default_season_id':1,'group_by': []}</field>
+ 		</record>
+        <record model="ir.actions.act_window" id="action_display_rpt_audit">
+            <field name="name">Rekapitulasi Data Audit</field>
+            <field name="res_model">rpt.audit</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="rpt_audit_tree"/>
+            <field name="act_window_id" ref="action_rpt_audit"/>
+        </record>
+
+    <menuitem name="Rekapitulasi Audit" action="action_display_rpt_audit" id="menu_action_rpt_audit" parent="menu_report_audit" sequence="2"/>
+
+	</data>
+</openerp>
